@@ -2,7 +2,7 @@
 
 function trace_viewdata( $exit=FALSE ){
 	$CI = &get_instance();
-	trace( $CI->load->_ci_cached_vars, $exit );
+	return trace( $CI->load->_ci_cached_vars, $exit );
 }
 
 function trace( $val, $exit=FALSE ){
@@ -69,17 +69,28 @@ function trace( $val, $exit=FALSE ){
 
 		$template = file_get_contents( $load_path.'tracer_template.html' );
 		$final_trace = str_replace( '{msg}', $msg, $template );
-		
+				
+		$return = '';
+
 		if( !defined( 'TRACER_FIRED' )){
 			define( 'TRACER_FIRED', TRUE );
 			$file = $load_path .'tracer_styles.html';
-			echo file_get_contents( $file );
+			if( $exit || !$prefs[ 'return_value' ] ){ // 7.6: see config file for notes re. return_value
+				echo file_get_contents( $file );
+			}
+			else {
+				$return .= file_get_contents( $file );
+			}
 		}
 		
-		echo $final_trace;
+		$return .= $final_trace;
 
-		if( $exit ){
+		if( $exit || !$prefs[ 'return_value' ] ){
+			echo $final_trace;
 			exit();
+		}
+		else {
+			return $return;
 		}
 	}
 }

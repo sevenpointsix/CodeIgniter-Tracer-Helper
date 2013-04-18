@@ -9,6 +9,9 @@ $config[ 'tracer' ][ 'show_benchmarks' ] = TRUE;
 // determines if the tracer runs or not, 
 $config[ 'tracer' ][ 'enabled' ] = TRUE;
 
+// 7.6: this allows values to be returned, if we're not set to exit
+$config[ 'tracer' ][ 'return_value' ] = TRUE;
+
 /*
 its probally best to environment switch,
 This will keep traces from showing up on your stage or production.
