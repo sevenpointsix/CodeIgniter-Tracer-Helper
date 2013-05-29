@@ -36,6 +36,10 @@ function trace( $val, $exit=FALSE ){
 			
 			if( isset( $CI->db )){
 				foreach ( $CI->db->queries as $key => $val ){
+
+					// 7.6: Ignore any queries that set session
+					if (strpos($val, 'ci_sessions') !== false) continue;
+
 					$time = number_format( $CI->db->query_times[$key], 4 );
 
 					foreach ( $highlight as $bold ){

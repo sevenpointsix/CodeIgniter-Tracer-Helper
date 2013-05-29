@@ -3,7 +3,7 @@
 // this will run on the values you are tracing out, default htmlspecialchars
 $config[ 'tracer' ][ 'function' ] = 'htmlspecialchars';
 // if you would like to show the last 
-$config[ 'tracer' ][ 'show_queries' ] = TRUE;
+$config[ 'tracer' ][ 'show_queries' ] = FALSE;
 // if you would like to show all benchmarks 
 $config[ 'tracer' ][ 'show_benchmarks' ] = TRUE;
 // determines if the tracer runs or not, 
